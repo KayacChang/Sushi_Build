@@ -1,0 +1,50 @@
+package game
+
+import (
+	"encoding/json"
+
+	"github.com/YWJSonic/ServerUtility/foundation"
+	"github.com/YWJSonic/ServerUtility/foundation/fileload"
+	"github.com/YWJSonic/ServerUtility/iserver"
+	"github.com/YWJSonic/ServerUtility/restfult"
+	"github.com/YWJSonic/ServerUtility/socket"
+	"gitlab.fbk168.com/gamedevjp/cyberpunk/server/game/gamerule"
+)
+
+// NewGameServer ...
+func NewGameServer() {
+
+	jsStr := fileload.Load("./file/config.json")
+	config := foundation.StringToJSON(jsStr)
+	baseSetting := iserver.NewSetting()
+	baseSetting.SetData(config)
+
+	gamejsStr := fileload.Load("./file/gameconfig.json")
+	var gameRule = &gamerule.Rule{}
+	if err := json.Unmarshal([]byte(gamejsStr), &gameRule); err != nil {
+		panic(err)
+	}
+
+	var gameserver = iserver.NewService()
+	var game = &Game{
+		IGameRule: gameRule,
+		Server:    gameserver,
+	}
+	gameserver.Restfult = restfult.NewRestfultService()
+	gameserver.Socket = socket.NewSocket()
+	gameserver.IGame = game
+
+	// start Server
+	gameserver.Launch(baseSetting)
+
+	// start DB service
+	setting := gameserver.Setting.DBSetting()
+	gameserver.LaunchDB("gamedb", setting)
+	gameserver.LaunchDB("logdb", setting)
+
+	// start restful service
+	go gameserver.LaunchRestfult(game.RESTfulURLs())
+	// go gameserver.LaunchSocket(game.SocketURLs())
+
+	<-gameserver.ShotDown
+}

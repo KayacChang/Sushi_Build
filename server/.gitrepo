@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://gitlab.fbk168.com/gamedevjp/cyberpunk/server.git
+	branch = master
+	commit = 0ee807530134b700a9a9a2568f2b65b05dd652d6
+	parent = 47ab94d5299e46b4360201671c8727611fd31289
+	method = merge
+	cmdver = 0.4.1
