@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  database:
+    build:
+      context: "."
+      dockerfile: "./dockerfiles/database/Dockerfile"
+    ports:
+      - "${DB_PORT}"
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+
+  backend:
+    build:
+      context: "."
+      dockerfile: "./dockerfiles/server/Dockerfile"
+    ports:
+      - "${SERVER_HTTP_PORT}:${SERVER_HTTP_PORT}"
+      - "${SERVER_SOCKET_PORT}:${SERVER_SOCKET_PORT}"
+
+  redis:
+    image: "redis:alpine"

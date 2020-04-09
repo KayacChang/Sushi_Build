@@ -1,6 +1,8 @@
 
 CREATE SCHEMA `logdb` DEFAULT CHARACTER SET utf8  COLLATE utf8_general_ci ;
 
+GRANT ALL PRIVILEGES ON `logdb`.* TO 'serverConnect'@'%';
+
 USE `logdb`;
 
 CREATE TEMPORARY TABLE log (  
@@ -18,8 +20,6 @@ CREATE TEMPORARY TABLE log (
   `Msg` text NOT NULL,  
   PRIMARY KEY (`index`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DESCRIBE log;
 
 CREATE TABLE IF NOT EXISTS `20200405` LIKE log;
 CREATE TABLE IF NOT EXISTS `20200406` LIKE log;
@@ -113,6 +113,8 @@ CREATE TABLE IF NOT EXISTS `20200630` LIKE log;
 
 CREATE SCHEMA `gamedb` DEFAULT CHARACTER SET utf8  COLLATE utf8_general_ci ;
 
+GRANT ALL PRIVILEGES ON `gamedb`.* TO 'serverConnect'@'%';
+
 USE `gamedb`;
 
 CREATE TABLE IF NOT EXISTS `attach` (
@@ -123,13 +125,9 @@ CREATE TABLE IF NOT EXISTS `attach` (
   PRIMARY KEY (`PlayerID`,`Kind`,`Type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DESCRIBE `attach`;
-
 CREATE TABLE IF NOT EXISTS `setting` (
   `Key` varchar(40) NOT NULL,
   `IValue` int DEFAULT '0',
   `SValue` varchar(60) DEFAULT '',
   PRIMARY KEY (`Key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DESCRIBE `setting`;
