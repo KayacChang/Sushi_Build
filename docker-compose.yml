@@ -7,10 +7,15 @@ services:
       dockerfile: "./dockerfiles/database/Dockerfile"
     ports:
       - "${DB_PORT}"
+    volumes:
+      - ./.db:/var/lib/postgresql/data
     environment:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
+
+  redis:
+    image: "redis:alpine"
 
   backend:
     build:
@@ -19,6 +24,13 @@ services:
     ports:
       - "${SERVER_HTTP_PORT}:${SERVER_HTTP_PORT}"
       - "${SERVER_SOCKET_PORT}:${SERVER_SOCKET_PORT}"
+    depends_on:
+      - database
+      - redis
 
-  redis:
-    image: "redis:alpine"
+  client:
+    build:
+      context: "."
+      dockerfile: "./dockerfiles/client/Dockerfile"
+    ports:
+      - "3000:80"
