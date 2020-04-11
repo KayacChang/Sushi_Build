@@ -29,9 +29,6 @@ services:
     build:
       context: "."
       dockerfile: "./dockerfiles/server/Dockerfile"
-    ports:
-      - "${SERVER_HTTP_PORT}:${SERVER_HTTP_PORT}"
-      - "${SERVER_SOCKET_PORT}:${SERVER_SOCKET_PORT}"
     depends_on:
       - database
       - redis
