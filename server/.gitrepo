@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://gitlab.fbk168.com/gamedevjp/cyberpunk/server.git
 	branch = master
-	commit = 88172cdc4797dfc0aa095966bf2d19aa69162a12
-	parent = 04f73e90560de2b9fd567c2d3f9e2dcab0c8d73a
+	commit = 9f80b0c1455d85bc84ab1fa3ab006e7599114dbf
+	parent = eb2e2acb3652c85cc5f1fc2bdf2e011273ba6009
 	method = merge
 	cmdver = 0.4.1
