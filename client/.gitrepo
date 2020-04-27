@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://gitlab.fbk168.com/gamedevjp/sushi/client.git
+	branch = master
+	commit = fa0245445f1f17ec9818d5fc19fe5e0ffa26678e
+	parent = a722e2f08917de719209be5eb737a1ad2eecbcbf
+	method = merge
+	cmdver = 0.4.1
