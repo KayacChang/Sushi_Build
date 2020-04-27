@@ -6,10 +6,10 @@ services:
       context: "."
       dockerfile: "./dockerfiles/interface/Dockerfile"
     ports:
-      - "3000:80"
+      - "3001:80"
     depends_on:
       - backend
-      # - client
+      - client
 
   database:
     build:
@@ -32,7 +32,8 @@ services:
     depends_on:
       - database
       - redis
-  # client:
-  #   build:
-  #     context: "."
-  #     dockerfile: "./dockerfiles/client/Dockerfile"
+
+  client:
+    build:
+      context: "."
+      dockerfile: "./dockerfiles/client/Dockerfile"
