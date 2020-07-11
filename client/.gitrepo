@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://gitlab.fbk168.com/gamedevjp/sushi/client.git
 	branch = master
-	commit = 4fdd1938844c3aa7299abeea6d0295dc65766ba5
-	parent = 804473401a2f0ba137c396650955c3aaca06d23a
+	commit = 05af8ed6a3d7e5f33abb55ddb124b403d24e2720
+	parent = 3913ca4cb45aa7f0b46cdcff4c5305e248097f84
 	method = merge
 	cmdver = 0.4.1
